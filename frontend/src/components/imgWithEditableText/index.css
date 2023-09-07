@@ -1,0 +1,37 @@
+.image-with-text {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image-with-text img {
+  position: relative;
+}
+
+.image-with-text .text-wrapper {
+  position: absolute;
+  color: white;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+  transition: all 0.3s;
+  user-select: none;
+}
+
+.image-with-text .system {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  color: white;
+  padding: 7px;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+}
+
+img {
+  width: 100%;
+  height: auto;
+}

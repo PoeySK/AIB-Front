@@ -1,5 +1,4 @@
 import os
-import openai
 import torch, gc
 import numpy as np
 import cv2
@@ -12,23 +11,10 @@ from .makeTemplate import *
 from .serializers import TemplateSerializer
 from diffusers import StableDiffusionPipeline, DPMSolverMultistepScheduler
 
-#openai.api_key = 
-gptModel = 'text-davinci-003'
 model_id = "runwayml/stable-diffusion-v1-5"
 
 MODEL_URL = "https://tfhub.dev/tensorflow/efficientdet/d2/1"
 detectModel = hub.load(MODEL_URL)
-
-def makeGPT(request) :
-    print(request.data['concept'])
-    # chatGPT 연결
-    response = openai.Completion.create(
-        prompt = request.data['concept'],
-        model = gptModel
-    )
-    for result in response.choices:
-        return(result.text)
-
 
 def makeStableDiffusion(answer, width, height) :
     print("쿠다 가능 :{}".format(torch.cuda.is_available()))
@@ -261,9 +247,9 @@ def transparency2(before_image, direction, axis):
     for y in range(height):
         for x in range(width):
             item = image.getpixel((x, y))
-            if direction == "left" :
+            if direction == "right" :
                 alpha = int(255-(255-min_alpha)*gaussian(factor * x+ (1-factor) * middle_w, middle_w, sigma)/gaussian(middle_w, middle_w, sigma))
-            elif direction == "right" :
+            elif direction == "left" :
                 alpha = int(255-(255-min_alpha)*gaussian(factor * (width-x)+ (1-factor) * middle_w, middle_w, sigma)/gaussian(middle_w, middle_w, sigma))
             elif direction == "down" :
                 alpha = int(255-(255-min_alpha)*gaussian(factor * y+ (1-factor) * middle_h, middle_h, sigma)/gaussian(middle_h, middle_h, sigma))

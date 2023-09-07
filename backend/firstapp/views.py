@@ -56,21 +56,29 @@ def request_view(request):
         concept = data['concept']
         include = data['include']
         contents = data['contents']
-        print(concept,include,contents)
-        # 이제 concept, include, contents를 사용하여 필요한 작업을 수행할 수 있습니다.
+        
+        purpose = []
+        texts = []
+        for i in range(len(contents)):
+            texts.append(contents[i]['comment'])    
+            purpose.append(contents[i]['select'])
 
-        img = Image.open("makeStableDiffusion.png")
+        
+
+        image, changed_texts, position, font_size, kerning, alignments = makeWebBanner(concept, texts, include, purpose)
         img_io = io.BytesIO()
-        img.save(img_io, 'PNG')
+        image.save(img_io, 'PNG')
         img_io.seek(0)
 
+        response = FileResponse(img_io, content_type='png')
 
         # 작업이 끝나면, JsonResponse를 사용하여 응답을 보냅니다.
-        return FileResponse(img_io, content_type='png')
+        return response
 
     else:
+        print("bad")
         # POST 요청이 아닌 경우, 에러 메시지를 보냅니다.
-        return JsonResponse({'error': 'Invalid method'}, status=400)
+        return JsonResponse({'error': 'Invalid method'}, status=    400)
 
 
 
