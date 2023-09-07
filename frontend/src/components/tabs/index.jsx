@@ -13,7 +13,7 @@ const Tab = (props) => {
         document.querySelector('.tabList li a#' + tabId).classList.add('on');
         dispatch(setCurTab(tabId));
     };
-
+    // commit test
     return (
         <li role='presentation' style={{ minWidth: props.minWidth + 'px' }}>
             <a href='#!'
