@@ -3,15 +3,15 @@ import { Link } from "react-router-dom";
 import "./index.css";
 
 export const TopMenu = () => {
-  const [isLogin, setIsLogin] = useState(false);
-  let loginText = "로그인";
+  const [isLogin, setIsLogin] = useState(true);
+  
   useEffect(() => {
     if (!isLogin) {
-      loginText = "로그인";
+      setIsLogin(false);
     } else {
-      loginText = "로그아웃";
+      setIsLogin(true);
     }
-  })
+  }, [isLogin]);
 
   return (
     <nav>
@@ -37,9 +37,9 @@ export const TopMenu = () => {
           </Link>
         </li>
         <li>
-          <Link className="service-button" to="/">
+          <span className="service-button">
             가격
-          </Link>
+          </span>
         </li>
         <li>
           <Link className="service-button" to="/">
@@ -50,7 +50,7 @@ export const TopMenu = () => {
       <ul id="login">
         <li>
           <Link id="login-button" to="/">
-            {loginText}
+            {isLogin ? "로그아웃" : "로그인"}
           </Link>
         </li>
       </ul>
