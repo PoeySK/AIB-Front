@@ -14,7 +14,6 @@ export const ImgWithEditableText = ({
   imageUrl,
   initialTexts,
   initialTextPositions,
-  style,
 }) => {
   const containerRef = useRef(null);
   const systemRef = useRef(null);
@@ -125,8 +124,6 @@ export const ImgWithEditableText = ({
         style={{
           position: "relative",
           display: "inline-block",
-          width: style.width,
-          height: style.height,
         }}
         className="image-with-text"
         ref={containerRef}

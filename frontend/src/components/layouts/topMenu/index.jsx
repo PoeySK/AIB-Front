@@ -32,24 +32,24 @@ export const TopMenu = () => {
           </Link>
         </li>
         <li>
-          <Link className="service-button" to="/">
+          <Link className="service-button">
             기업 소개
           </Link>
         </li>
         <li>
-          <span className="service-button">
+          <Link className="service-button">
             가격
-          </span>
+          </Link>
         </li>
         <li>
-          <Link className="service-button" to="/">
+          <Link className="service-button">
             FAQ
           </Link>
         </li>
       </ul>
       <ul id="login">
         <li>
-          <Link id="login-button" to="/">
+          <Link id="login-button">
             {isLogin ? "로그아웃" : "로그인"}
           </Link>
         </li>

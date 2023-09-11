@@ -3,6 +3,7 @@ import "./index.css";
 import { TopMenu } from "../../components/layouts/topMenu";
 import { Sidebar } from "../../components/layouts/sideMenu";
 import { ImgWithEditableText } from "../../components/imgWithEditableText";
+import { Layout } from "../../components/layouts";
 
 const LastPage = () => {
   const imgTest = "./testImgJpeg.jpeg";
@@ -32,13 +33,10 @@ const LastPage = () => {
 
   return (
     <>
-      <TopMenu imageUrl={imgTest} />
-      <div id="last-page">
-        <Sidebar/>
+      <Layout>
         <div
           className="image-container"
           style={{
-            paddingLeft: "300px",
             width: imageSize.width,
           }}
         >
@@ -46,10 +44,9 @@ const LastPage = () => {
             imageUrl={image.imageUrl_front}
             initialTexts={image.initialTexts}
             initialTextPositions={image.textPositions}
-            style={imageSize}
           />
         </div>
-      </div>
+      </Layout>
     </>
   );
 };
