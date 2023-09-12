@@ -5,13 +5,5 @@ body {
 .image-container {
   display: flex;
   justify-content: center;
-  align-items: center;
   padding-top: 200px;
-}
-
-.sidebar {
-  width: 250px;
-  height: 100vh;
-  background-color: #f0f0f0;
-  padding: 20px;
 }
