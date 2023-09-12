@@ -3,13 +3,11 @@ import { TopMenu } from "./topMenu/index";
 import { Sidebar } from "./sideMenu/index";
 
 export const Layout = (props) => {
-    return (
-        <>
-            <TopMenu />
-            <Sidebar />
-            <main>
-                {props.children}
-            </main>
-        </>
-    )
-}
+  return (
+    <>
+      <TopMenu />
+      <main>{props.children}</main>
+      <Sidebar />
+    </>
+  );
+};
