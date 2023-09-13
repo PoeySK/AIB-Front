@@ -1,4 +1,5 @@
 import React from "react";
+import "./index.css";
 import { useDispatch } from "react-redux";
 import { setCurTab } from "../../config/reducer";
 
@@ -16,7 +17,7 @@ const Tab = (props) => {
   };
 
   return (
-    <li role="presentation" style={{ minWidth: props.minWidth + "px" }}>
+    <li role="presentation" >
       <a
         href="#!"
         role="tab"
@@ -34,10 +35,9 @@ const Tab = (props) => {
 
 export const TabList = () => {
   const tabList = [
-    { tabName: "색상", id: "color", isOn: true },
-    { tabName: "글꼴", id: "font", isOn: false },
+    { tabName: "색상", id: "colorModify", isOn: true },
+    { tabName: "수정", id: "textModify", isOn: false },
   ];
-  const minWidth = Math.floor(window.innerWidth / tabList.length);
 
   return (
     <div className="tabBox">
