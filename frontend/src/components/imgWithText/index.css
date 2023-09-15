@@ -22,4 +22,6 @@
 img {
   width: 100%;
   height: auto;
+  padding: 50px 80px;
+  background-color: #eef5ff;
 }

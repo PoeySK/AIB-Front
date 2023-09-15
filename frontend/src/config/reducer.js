@@ -5,7 +5,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 export const CUR_TAB = 'CUR_TAB';
 export const setCurTab = tabId => ({ type: CUR_TAB, tabId });
 
-const rootReducer = (state = { tabId: 'color' }, action) => {
+const rootReducer = (state = { tabId: 'colorModify' }, action) => {
     switch (action.type) {
         case CUR_TAB:
             return {

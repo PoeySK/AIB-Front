@@ -29,6 +29,9 @@ export const ImgWithEditableText = ({
   const handleTextClick = (index) => {
     setEditingIndex(index);
     setEditing(true);
+
+    // const selectedText = texts[index]?.text || "";
+    // handleTextSelection(selectedText);
   };
 
   const handleFontChange = (e) => {
@@ -68,9 +71,11 @@ export const ImgWithEditableText = ({
     }
   };
 
+  const element = document.getElementsByClassName("selectImg");
+  
   const textStyles = textPositions.map((position, index) => ({
-    top: `${position.y}px`,
-    left: `${position.x}px`,
+    top: `${position.y + 50}px`,
+    left: `${position.x + 80}px`,
     fontSize: texts[index]?.fontSize ? `${texts[index].fontSize}px` : "24px",
     fontFamily: texts[index]?.fontFamily ? texts[index].fontFamily : "Arial",
   }));
@@ -130,6 +135,7 @@ export const ImgWithEditableText = ({
       >
         <div>
           <img
+            className="selectImg"
             src={imageUrl}
             alt="AIB Service and Project Completion"
           />
