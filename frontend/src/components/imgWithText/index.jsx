@@ -29,6 +29,9 @@ export const ImgWithEditableText = ({
   const handleTextClick = (index) => {
     setEditingIndex(index);
     setEditing(true);
+
+    // const selectedText = texts[index]?.text || "";
+    // handleTextSelection(selectedText);
   };
 
   const handleFontChange = (e) => {

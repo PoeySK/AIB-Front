@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
-import { TopMenu } from "../../components/layouts/topMenu";
-import { Sidebar } from "../../components/layouts/sideMenu";
-import { ImgWithEditableText } from "../../components/imgWithEditableText";
+import { ImgWithEditableText } from "../../components/imgWithText";
 import { Layout } from "../../components/layouts";
 
 const LastPage = () => {
