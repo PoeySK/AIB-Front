@@ -32,7 +32,6 @@ const LastPage = () => {
 
   const handleSelectedText = (newText) => {
     setSelectedText(newText);
-    console.log("실행!\n", selectedText);
   };
 
   return (

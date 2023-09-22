@@ -36,7 +36,7 @@ const Tab = (props) => {
 export const TabList = () => {
   const tabList = [
     { tabName: "색상", id: "colorModify", isOn: true },
-    { tabName: "수정", id: "textModify", isOn: false },
+    { tabName: "글꼴", id: "textModify", isOn: false },
   ];
 
   return (

@@ -2,8 +2,9 @@ import React from "react";
 import { TopMenu } from "./topMenu/index";
 import { Sidebar } from "./sideMenu/index";
 
-export const Layout = (props, { selectedText }) => {
-  console.log("Layout selectedText:", selectedText);
+export const Layout = (props) => {
+  const { selectedText } = props;
+  
   return (
     <>
       <TopMenu />
