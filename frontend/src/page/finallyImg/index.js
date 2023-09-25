@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./index.css";
 import { ImgWithEditableText } from "../../components/imgWithText";
 import { Layout } from "../../components/layouts";
@@ -28,10 +28,15 @@ const LastPage = () => {
   };
 
   const [imageSize, setImageSize] = useState({ width: "100%", height: "100%" });
+  const [selectedText, setSelectedText] = useState("");
+
+  const handleSelectedText = (newText) => {
+    setSelectedText(newText);
+  };
 
   return (
     <>
-      <Layout>
+      <Layout selectedText={selectedText}>
         <div
           className="image-container"
           style={{
@@ -42,6 +47,7 @@ const LastPage = () => {
             imageUrl={image.imageUrl_front}
             initialTexts={image.initialTexts}
             initialTextPositions={image.textPositions}
+            onClickText={handleSelectedText}
           />
         </div>
       </Layout>

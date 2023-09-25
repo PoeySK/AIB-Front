@@ -14,6 +14,7 @@ export const ImgWithEditableText = ({
   imageUrl,
   initialTexts,
   initialTextPositions,
+  onClickText,
 }) => {
   const containerRef = useRef(null);
   const systemRef = useRef(null);
@@ -30,8 +31,8 @@ export const ImgWithEditableText = ({
     setEditingIndex(index);
     setEditing(true);
 
-    // const selectedText = texts[index]?.text || "";
-    // handleTextSelection(selectedText);
+    onClickText(texts[index]?.text);
+    console.log(texts[index]?.text);
   };
 
   const handleFontChange = (e) => {
@@ -72,7 +73,7 @@ export const ImgWithEditableText = ({
   };
 
   const element = document.getElementsByClassName("selectImg");
-  
+
   const textStyles = textPositions.map((position, index) => ({
     top: `${position.y + 50}px`,
     left: `${position.x + 80}px`,
@@ -139,17 +140,17 @@ export const ImgWithEditableText = ({
             src={imageUrl}
             alt="AIB Service and Project Completion"
           />
-        {texts.map((text, index) => (
-          <div
-          className="text-wrapper"
-          style={textStyles[index]}
-          onClick={() => handleTextClick(index)}
-          onMouseDown={(e) => handleMouseDown(e, index)}
-          key={index}
-          >
-            {text.text}
-          </div>
-        ))}
+          {texts.map((text, index) => (
+            <div
+              className="text-wrapper"
+              style={textStyles[index]}
+              onClick={() => handleTextClick(index)}
+              onMouseDown={(e) => handleMouseDown(e, index)}
+              key={index}
+            >
+              {text.text}
+            </div>
+          ))}
         </div>
         {editing && (
           <div
