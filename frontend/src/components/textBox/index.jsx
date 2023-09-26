@@ -1,12 +1,13 @@
 import React from "react";
+import "./index.css";
 
 export const TextBox = ({ selectedText }) => {
   return (
     <div>
       <p>
         선택한 Text: <br />
-        {selectedText}
       </p>
+      <div id="selected-text">{selectedText}</div>
     </div>
   );
 };
