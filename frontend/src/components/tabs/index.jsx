@@ -13,7 +13,6 @@ const Tab = (props) => {
     document.querySelector(".tabList li a.on").classList.remove("on");
     document.querySelector(".tabList li a#" + tabId).classList.add("on");
     dispatch(setCurTab(tabId));
-    console.log(tabId);
   };
 
   return (
@@ -40,13 +39,12 @@ export const TabList = () => {
   ];
 
   return (
-    <div className="tabBox">
-      <ul className="tabList" role="tablist">
-        {tabList &&
-          tabList.map((v) => {
-            return <Tab key={v.id} tab={v} />;
-          })}
-      </ul>
-    </div>
+    <ul className="tabList">
+      {tabList &&
+        tabList.map((v) => {
+          return <Tab key={v.id} tab={v} />;
+        })}
+    </ul>
+
   );
 };
