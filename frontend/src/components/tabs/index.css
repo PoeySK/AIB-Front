@@ -1,11 +1,16 @@
-a {
+
+#colorModify, #textModify {
     font-family: "Inter";
-    font-weight: bold;
-    color: #000000;
+    color: #b1b1b1;
     text-decoration: none;
+    
 }
 
-a:hover {
-    text-decoration-color: #eef5ff;
-    text-decoration: underline;
+#colorModify:hover, #textModify:hover {
+    color: #504e4e;
+}
+
+#colorModify.on, #textModify.on {
+    font-weight: bold;
+    color: #000000;
 }

@@ -8,7 +8,7 @@ import { TextBox } from "../../textBox/index";
 
 export const Sidebar = ({ selectedText }) => {
   const tabId = useSelector((state) => state.tabId);
-  
+
   return (
     <div className="sidebar">
       <h2>메뉴</h2>
