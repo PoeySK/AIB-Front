@@ -15,7 +15,7 @@ export const Sidebar = ({ selectedText }) => {
       <TextBox selectedText={selectedText} />
       <div className="content">
         <TabList />
-        <div>{tabId === "colorModify" ? <ColorModify /> : <TextModify />}</div>
+        <div>{tabId === "colorModify" ? <ColorModify selectedText={selectedText}/> : <TextModify selectedText={selectedText}/>}</div>
       </div>
     </div>
   );
