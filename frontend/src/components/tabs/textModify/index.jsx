@@ -9,14 +9,16 @@ const fontOptions = [
   // ...
 ];
 
-export const TextModify = ({ selectedText }) => {
+export const TextModify = (props) => {
   const [fontFamily, setFontFamily] = useState("Arial");
   const [fontSize, setFontSize] = useState(24);
-  console.log("textmodify:", selectedText);
+  console.log("textmodify:", props.selectedText);
 
   const handleFontChange = (e) => {
     const newFontFamily = e.target.value;
-    console.log(newFontFamily);
+    console.log("hfc:", e.target.value);
+    props.getFontFamily(newFontFamily);
+    setFontFamily(newFontFamily);
     // setTexts((prevTexts) =>
     //   prevTexts.map((text, index) => {
     //     if (index === editingIndex) {
@@ -25,7 +27,6 @@ export const TextModify = ({ selectedText }) => {
     //     return text;
     //   })
     // );
-    setFontFamily(newFontFamily);
   };
 
   // const handleFontSizeChange = (e) => {

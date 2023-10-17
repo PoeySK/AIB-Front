@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./index.css";
-import { ImgWithEditableText } from "../../components/imgWithText";
+import { ImgWithText } from "../../components/imgWithText";
 import { Layout } from "../../components/layouts";
 
 const LastPage = () => {
@@ -13,11 +13,15 @@ const LastPage = () => {
         fontSize: 24,
         fontFamily: "Arial",
       },
-      { text: "AIB Project\n 末!!!", fontSize: 18, fontFamily: "Arial" },
+      {
+        text: "AIB Project\n 末!!!",
+        fontSize: 18,
+        fontFamily: "Courier New"
+      },
       {
         text: "언제 이 프로젝트가\n끝날까...?",
         fontSize: 20,
-        fontFamily: "Arial",
+        fontFamily: "Helvetica",
       },
     ],
     textPositions: [
@@ -29,6 +33,11 @@ const LastPage = () => {
 
   const [imageSize, setImageSize] = useState({ width: "100%", height: "100%" });
   const [selectedText, setSelectedText] = useState("");
+  const [family, setFamily] = useState("");
+
+  const getFontFamily = (f) => {
+    setFamily(f);
+  }
 
   const handleSelectedText = (newText) => {
     setSelectedText(newText);
@@ -36,14 +45,14 @@ const LastPage = () => {
 
   return (
     <>
-      <Layout selectedText={selectedText}>
+      <Layout selectedText={selectedText} getFontFamily={getFontFamily}>
         <div
           className="image-container"
           style={{
             width: imageSize.width,
           }}
         >
-          <ImgWithEditableText
+          <ImgWithText
             imageUrl={image.imageUrl_front}
             initialTexts={image.initialTexts}
             initialTextPositions={image.textPositions}
