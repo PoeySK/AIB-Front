@@ -6,16 +6,19 @@ import { ColorModify } from "../../tabs/colorModify/index";
 import { TextModify } from "../../tabs/textModify/index";
 import { TextBox } from "../../textBox/index";
 
-export const Sidebar = ({ selectedText }) => {
+export const Sidebar = (props) => {
   const tabId = useSelector((state) => state.tabId);
 
   return (
     <div className="sidebar">
       <h2>메뉴</h2>
-      <TextBox selectedText={selectedText} />
+      <TextBox selectedText={props.selectedText} />
       <div className="content">
         <TabList />
-        <div>{tabId === "colorModify" ? <ColorModify /> : <TextModify />}</div>
+        <div>{tabId === "colorModify" ?
+          <ColorModify selectedText={props.selectedText} /> :
+          <TextModify selectedText={props.selectedText} getFontFamily={props.getFontFamily} />}
+        </div>
       </div>
     </div>
   );

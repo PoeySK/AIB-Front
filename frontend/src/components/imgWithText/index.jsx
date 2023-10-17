@@ -10,7 +10,7 @@ const fontOptions = [
   // ...
 ];
 
-export const ImgWithEditableText = ({
+export const ImgWithText = ({
   imageUrl,
   initialTexts,
   initialTextPositions,
@@ -152,7 +152,7 @@ export const ImgWithEditableText = ({
             </div>
           ))}
         </div>
-        {editing && (
+        {/* {editing && (
           <div
             className="system"
             style={{
@@ -184,7 +184,7 @@ export const ImgWithEditableText = ({
               </label>
             </div>
           </div>
-        )}
+        )} */}
       </div>
     </form>
   );
