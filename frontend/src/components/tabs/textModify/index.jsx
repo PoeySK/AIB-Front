@@ -29,7 +29,7 @@ export const TextModify = (props) => {
     // );
   };
 
-  // const handleFontSizeChange = (e) => {
+  const handleFontSizeChange = (e) => {
   //   const newFontSize = Number(e.target.value);
   //   setTexts((prevTexts) =>
   //     prevTexts.map((text, index) => {
@@ -40,18 +40,31 @@ export const TextModify = (props) => {
   //     })
   //   );
   //   setFontSize(newFontSize);
-  // };
+  };
 
   return (
     <div>
-      글꼴: &nbsp;
-      <select value={fontFamily} onChange={handleFontChange}>
-        {fontOptions.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
+      <div>
+        글꼴: &nbsp;
+        <select value={fontFamily} onChange={handleFontChange}>
+          {fontOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div>
+        <label>
+          크기: &nbsp;
+          <input
+            type="number"
+            value={fontSize}
+            onChange={handleFontSizeChange}
+            style={{width: 50, height: 15}}
+          />
+        </label>
+      </div>
     </div>
   );
 };
