@@ -75,8 +75,8 @@ export const ImgWithText = ({
   const element = document.getElementsByClassName("selectImg");
 
   const textStyles = textPositions.map((position, index) => ({
-    top: `${position.y + 50}px`,
-    left: `${position.x + 80}px`,
+    top: `${position.y + 50}px`, // 50px -> 뒷배경
+    left: `${position.x + 80}px`, // 80px -> 뒷배경
     fontSize: texts[index]?.fontSize ? `${texts[index].fontSize}px` : "24px",
     fontFamily: texts[index]?.fontFamily ? texts[index].fontFamily : "Arial",
   }));

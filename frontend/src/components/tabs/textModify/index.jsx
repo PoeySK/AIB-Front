@@ -10,9 +10,10 @@ const fontOptions = [
 ];
 
 export const TextModify = (props) => {
-  const [fontFamily, setFontFamily] = useState("Arial");
+  const [fontFamily, setFontFamily] = useState("");
   const [fontSize, setFontSize] = useState(24);
-  console.log("textmodify:", props.selectedText);
+  const [texts, setTexts] = useState(props.imageInfo.initialTexts);
+  console.log("textmodify:", texts);
 
   const handleFontChange = (e) => {
     const newFontFamily = e.target.value;
@@ -30,16 +31,16 @@ export const TextModify = (props) => {
   };
 
   const handleFontSizeChange = (e) => {
-  //   const newFontSize = Number(e.target.value);
-  //   setTexts((prevTexts) =>
-  //     prevTexts.map((text, index) => {
-  //       if (index === editingIndex) {
-  //         return { ...text, fontSize: newFontSize };
-  //       }
-  //       return text;
-  //     })
-  //   );
-  //   setFontSize(newFontSize);
+    const newFontSize = Number(e.target.value);
+    //   setTexts((prevTexts) =>
+    //     prevTexts.map((text, index) => {
+    //       if (index === editingIndex) {
+    //         return { ...text, fontSize: newFontSize };
+    //       }
+    //       return text;
+    //     })
+    //   );
+    setFontSize(newFontSize);
   };
 
   return (
@@ -61,7 +62,7 @@ export const TextModify = (props) => {
             type="number"
             value={fontSize}
             onChange={handleFontSizeChange}
-            style={{width: 50, height: 15}}
+            style={{ width: 50, height: 15 }}
           />
         </label>
       </div>

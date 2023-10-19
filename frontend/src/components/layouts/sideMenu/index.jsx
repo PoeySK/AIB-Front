@@ -15,9 +15,16 @@ export const Sidebar = (props) => {
       <TextBox selectedText={props.selectedText} />
       <div className="content">
         <TabList />
-        <div>{tabId === "colorModify" ?
-          <ColorModify selectedText={props.selectedText} /> :
-          <TextModify selectedText={props.selectedText} getFontFamily={props.getFontFamily} />}
+        <div>
+          {tabId === "colorModify" ? (
+            <ColorModify selectedText={props.selectedText} />
+          ) : (
+            <TextModify
+              selectedText={props.selectedText}
+              getFontFamily={props.getFontFamily}
+              imageInfo={props.imageInfo}
+            />
+          )}
         </div>
       </div>
     </div>
