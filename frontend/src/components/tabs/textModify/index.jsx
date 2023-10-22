@@ -14,8 +14,8 @@ const fontOptions = [
 export const TextModify = (props) => {
   const [fontFamily, setFontFamily] = useState("");
   const [fontSize, setFontSize] = useState(24);
-  console.log("textmodify:", props.selectedText);
-
+  const dispatch = useDispatch();
+  
   const handleFontChange = (e) => {
     const newFontFamily = e.target.value;
     props.getFontFamily(newFontFamily);
