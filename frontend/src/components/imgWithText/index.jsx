@@ -54,8 +54,8 @@ export const ImgWithText = ({
   const textStyles = textPositions.map((position, index) => ({
     top: `${position.y + 50}px`,
     left: `${position.x + 80}px`,
-    fontSize: texts[index]?.fontSize ? `${texts[index].fontSize}px` : "",
-    fontFamily: texts[index]?.fontFamily ? texts[index].fontFamily : "",
+    fontSize: texts[index]?.fontSize ? `${texts[index].fontSize}px` : "24px",
+    fontFamily: texts[index]?.fontFamily ? texts[index].fontFamily : "Arial",
   }));
 
   useEffect(() => {

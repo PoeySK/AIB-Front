@@ -9,7 +9,11 @@ export const Layout = (props) => {
     <>
       <TopMenu />
       <main>{props.children}</main>
-      <Sidebar selectedText={selectedText} getFontFamily={props.getFontFamily} />
+      <Sidebar
+        selectedText={selectedText}
+        getFontFamily={props.getFontFamily}
+        imageInfo={props.imageInfo}
+      />
     </>
   );
 };

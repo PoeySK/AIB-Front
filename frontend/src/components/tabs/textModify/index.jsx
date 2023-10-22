@@ -12,11 +12,8 @@ const fontOptions = [
 ];
 
 export const TextModify = (props) => {
-  const [fontFamily, setFontFamily] = useState("Arial");
+  const [fontFamily, setFontFamily] = useState("");
   const [fontSize, setFontSize] = useState(24);
-  const dispatch = useDispatch();
-
-
   console.log("textmodify:", props.selectedText);
 
   const handleFontChange = (e) => {
@@ -27,8 +24,16 @@ export const TextModify = (props) => {
   };
 
   const handleFontSizeChange = (e) => {
-    const newFontSize = Number(e.target.value);
-    setFontSize(newFontSize);
+  //   const newFontSize = Number(e.target.value);
+  //   setTexts((prevTexts) =>
+  //     prevTexts.map((text, index) => {
+  //       if (index === editingIndex) {
+  //         return { ...text, fontSize: newFontSize };
+  //       }
+  //       return text;
+  //     })
+  //   );
+  //   setFontSize(newFontSize);
   };
 
   return (
