@@ -4,7 +4,7 @@ import { Sidebar } from "./sideMenu/index";
 
 export const Layout = (props) => {
   const { selectedText } = props;
-  console.log("laoyt", props);
+  
   return (
     <>
       <TopMenu />

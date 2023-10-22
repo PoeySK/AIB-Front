@@ -1,7 +1,7 @@
 import React from "react";
 import "./index.css";
 import { useDispatch } from "react-redux";
-import { setCurTab } from "../../config/reducer";
+import { setCurTab } from "../../config/tabReducer/tabReducer";
 
 const Tab = (props) => {
   const tabName = props.tab.tabName;

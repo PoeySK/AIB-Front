@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./index.css";
+import { useSelector, useDispatch } from "react-redux";
 
 const fontOptions = [
   { value: "Arial", label: "Arial" },
@@ -26,39 +27,17 @@ export const ImgWithText = ({
   const [dragging, setDragging] = useState(false);
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
   const [textPositions, setTextPositions] = useState(initialTextPositions);
+  const dispatch = useDispatch();
 
+  const fontName = useSelector((state) => state.font.fontName);
+  console.log("selector:", fontName);
+  
   const handleTextClick = (index) => {
     setEditingIndex(index);
     setEditing(true);
 
     onClickText(texts[index]?.text);
     console.log(texts[index]?.text);
-  };
-
-  const handleFontChange = (e) => {
-    const newFontFamily = e.target.value;
-    setTexts((prevTexts) =>
-      prevTexts.map((text, index) => {
-        if (index === editingIndex) {
-          return { ...text, fontFamily: newFontFamily };
-        }
-        return text;
-      })
-    );
-    setFontFamily(newFontFamily);
-  };
-
-  const handleFontSizeChange = (e) => {
-    const newFontSize = Number(e.target.value);
-    setTexts((prevTexts) =>
-      prevTexts.map((text, index) => {
-        if (index === editingIndex) {
-          return { ...text, fontSize: newFontSize };
-        }
-        return text;
-      })
-    );
-    setFontSize(newFontSize);
   };
 
   const handleClickOutside = (e) => {
@@ -72,13 +51,11 @@ export const ImgWithText = ({
     }
   };
 
-  const element = document.getElementsByClassName("selectImg");
-
   const textStyles = textPositions.map((position, index) => ({
     top: `${position.y + 50}px`,
     left: `${position.x + 80}px`,
-    fontSize: texts[index]?.fontSize ? `${texts[index].fontSize}px` : "24px",
-    fontFamily: texts[index]?.fontFamily ? texts[index].fontFamily : "Arial",
+    fontSize: texts[index]?.fontSize ? `${texts[index].fontSize}px` : "",
+    fontFamily: texts[index]?.fontFamily ? texts[index].fontFamily : "",
   }));
 
   useEffect(() => {
@@ -152,39 +129,6 @@ export const ImgWithText = ({
             </div>
           ))}
         </div>
-        {/* {editing && (
-          <div
-            className="system"
-            style={{
-              top: `${textPositions[editingIndex].y - 60}px`,
-              left: `${textPositions[editingIndex].x}px`,
-            }}
-            ref={systemRef}
-          >
-            <div>
-              <label>
-                Font Family: &nbsp;
-                <select value={fontFamily} onChange={handleFontChange}>
-                  {fontOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
-            <div>
-              <label>
-                Font Size: &nbsp;
-                <input
-                  type="number"
-                  value={fontSize}
-                  onChange={handleFontSizeChange}
-                />
-              </label>
-            </div>
-          </div>
-        )} */}
       </div>
     </form>
   );
