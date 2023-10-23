@@ -1,15 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./index.css";
-import { useSelector, useDispatch } from "react-redux";
-
-const fontOptions = [
-  { value: "Arial", label: "Arial" },
-  { value: "Helvetica", label: "Helvetica" },
-  { value: "Times New Roman", label: "Times New Roman" },
-  { value: "Courier New", label: "Courier New" },
-  { value: "Verdana", label: "Verdana" },
-  // ...
-];
+import { useDispatch } from "react-redux";
+import { setCurFont } from "../../config/fontReducer/fontReducer";
 
 export const ImgWithText = ({
   imageUrl,
@@ -19,25 +11,17 @@ export const ImgWithText = ({
 }) => {
   const containerRef = useRef(null);
   const systemRef = useRef(null);
-  const [texts, setTexts] = useState(initialTexts);
+  const texts = initialTexts;
   const [editingIndex, setEditingIndex] = useState(null);
   const [editing, setEditing] = useState(false);
-  const [fontFamily, setFontFamily] = useState("Arial");
-  const [fontSize, setFontSize] = useState(24);
   const [dragging, setDragging] = useState(false);
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
   const [textPositions, setTextPositions] = useState(initialTextPositions);
   const dispatch = useDispatch();
-
-  const fontName = useSelector((state) => state.font.fontName);
-  console.log("selector:", fontName);
   
   const handleTextClick = (index) => {
-    setEditingIndex(index);
-    setEditing(true);
-
+    dispatch(setCurFont(texts[index]?.fontFamily, texts[index]?.fontSize));
     onClickText(texts[index]?.text);
-    console.log(texts[index]?.text);
   };
 
   const handleClickOutside = (e) => {
@@ -99,7 +83,7 @@ export const ImgWithText = ({
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
     };
-  }, [dragging, editingIndex, startPos]);
+  }, [dragging, startPos]);
 
   return (
     <form>

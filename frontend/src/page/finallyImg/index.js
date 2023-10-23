@@ -31,14 +31,8 @@ const LastPage = () => {
     ],
   };
 
-  const [imageSize, setImageSize] = useState({ width: "100%", height: "100%" });
+  const imageSize = { width: "100%", height: "100%" };
   const [selectedText, setSelectedText] = useState("");
-  const [family, setFamily] = useState("");
-  const [size, setSize] = useState();
-
-  const getFontFamily = (f) => {
-    setFamily(f);
-  };
 
   const handleSelectedText = (newText) => {
     setSelectedText(newText);
@@ -48,7 +42,6 @@ const LastPage = () => {
     <>
       <Layout
         selectedText={selectedText}
-        getFontFamily={getFontFamily}
         imageInfo={image}
       >
         <div

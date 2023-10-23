@@ -11,7 +11,6 @@ export const Layout = (props) => {
       <main>{props.children}</main>
       <Sidebar
         selectedText={selectedText}
-        getFontFamily={props.getFontFamily}
         imageInfo={props.imageInfo}
       />
     </>
