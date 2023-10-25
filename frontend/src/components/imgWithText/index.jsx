@@ -1,14 +1,7 @@
 import React, { useState, useRef, useEffect } from "react";
 import "./index.css";
-
-const fontOptions = [
-  { value: "Arial", label: "Arial" },
-  { value: "Helvetica", label: "Helvetica" },
-  { value: "Times New Roman", label: "Times New Roman" },
-  { value: "Courier New", label: "Courier New" },
-  { value: "Verdana", label: "Verdana" },
-  // ...
-];
+import { useDispatch } from "react-redux";
+import { setCurFont } from "../../config/fontReducer/fontReducer";
 
 export const ImgWithText = ({
   imageUrl,
@@ -18,47 +11,17 @@ export const ImgWithText = ({
 }) => {
   const containerRef = useRef(null);
   const systemRef = useRef(null);
-  const [texts, setTexts] = useState(initialTexts);
+  const texts = initialTexts;
   const [editingIndex, setEditingIndex] = useState(null);
   const [editing, setEditing] = useState(false);
-  const [fontFamily, setFontFamily] = useState("Arial");
-  const [fontSize, setFontSize] = useState(24);
   const [dragging, setDragging] = useState(false);
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
   const [textPositions, setTextPositions] = useState(initialTextPositions);
-
+  const dispatch = useDispatch();
+  
   const handleTextClick = (index) => {
-    setEditingIndex(index);
-    setEditing(true);
-
+    dispatch(setCurFont(texts[index]?.fontFamily, texts[index]?.fontSize));
     onClickText(texts[index]?.text);
-    console.log(texts[index]?.text);
-  };
-
-  const handleFontChange = (e) => {
-    const newFontFamily = e.target.value;
-    setTexts((prevTexts) =>
-      prevTexts.map((text, index) => {
-        if (index === editingIndex) {
-          return { ...text, fontFamily: newFontFamily };
-        }
-        return text;
-      })
-    );
-    setFontFamily(newFontFamily);
-  };
-
-  const handleFontSizeChange = (e) => {
-    const newFontSize = Number(e.target.value);
-    setTexts((prevTexts) =>
-      prevTexts.map((text, index) => {
-        if (index === editingIndex) {
-          return { ...text, fontSize: newFontSize };
-        }
-        return text;
-      })
-    );
-    setFontSize(newFontSize);
   };
 
   const handleClickOutside = (e) => {
@@ -71,8 +34,6 @@ export const ImgWithText = ({
       setEditing(false);
     }
   };
-
-  const element = document.getElementsByClassName("selectImg");
 
   const textStyles = textPositions.map((position, index) => ({
     top: `${position.y + 50}px`,
@@ -122,7 +83,7 @@ export const ImgWithText = ({
       window.removeEventListener("mousemove", handleMouseMove);
       window.removeEventListener("mouseup", handleMouseUp);
     };
-  }, [dragging, editingIndex, startPos]);
+  }, [dragging, startPos]);
 
   return (
     <form>
@@ -152,39 +113,6 @@ export const ImgWithText = ({
             </div>
           ))}
         </div>
-        {/* {editing && (
-          <div
-            className="system"
-            style={{
-              top: `${textPositions[editingIndex].y - 60}px`,
-              left: `${textPositions[editingIndex].x}px`,
-            }}
-            ref={systemRef}
-          >
-            <div>
-              <label>
-                Font Family: &nbsp;
-                <select value={fontFamily} onChange={handleFontChange}>
-                  {fontOptions.map((option) => (
-                    <option key={option.value} value={option.value}>
-                      {option.label}
-                    </option>
-                  ))}
-                </select>
-              </label>
-            </div>
-            <div>
-              <label>
-                Font Size: &nbsp;
-                <input
-                  type="number"
-                  value={fontSize}
-                  onChange={handleFontSizeChange}
-                />
-              </label>
-            </div>
-          </div>
-        )} */}
       </div>
     </form>
   );

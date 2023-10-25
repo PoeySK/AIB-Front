@@ -16,7 +16,7 @@ const LastPage = () => {
       {
         text: "AIB Project\n 末!!!",
         fontSize: 18,
-        fontFamily: "Courier New"
+        fontFamily: "Courier New",
       },
       {
         text: "언제 이 프로젝트가\n끝날까...?",
@@ -31,13 +31,8 @@ const LastPage = () => {
     ],
   };
 
-  const [imageSize, setImageSize] = useState({ width: "100%", height: "100%" });
+  const imageSize = { width: "100%", height: "100%" };
   const [selectedText, setSelectedText] = useState("");
-  const [family, setFamily] = useState("");
-
-  const getFontFamily = (f) => {
-    setFamily(f);
-  }
 
   const handleSelectedText = (newText) => {
     setSelectedText(newText);
@@ -45,7 +40,10 @@ const LastPage = () => {
 
   return (
     <>
-      <Layout selectedText={selectedText} getFontFamily={getFontFamily}>
+      <Layout
+        selectedText={selectedText}
+        imageInfo={image}
+      >
         <div
           className="image-container"
           style={{

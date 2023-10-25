@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { setCurFont } from "../../../config/fontReducer/fontReducer";
 
 const fontOptions = [
   { value: "Arial", label: "Arial" },
@@ -10,48 +12,44 @@ const fontOptions = [
 ];
 
 export const TextModify = (props) => {
-  const [fontFamily, setFontFamily] = useState("Arial");
-  const [fontSize, setFontSize] = useState(24);
-  console.log("textmodify:", props.selectedText);
-
+  const font = useSelector(state => state.font);
+  const [fontSize, setFontSize] = useState(font.fontSize);
+  const dispatch = useDispatch();
+  
   const handleFontChange = (e) => {
     const newFontFamily = e.target.value;
-    console.log("hfc:", e.target.value);
-    props.getFontFamily(newFontFamily);
-    setFontFamily(newFontFamily);
-    // setTexts((prevTexts) =>
-    //   prevTexts.map((text, index) => {
-    //     if (index === editingIndex) {
-    //       return { ...text, fontFamily: newFontFamily };
-    //     }
-    //     return text;
-    //   })
-    // );
+    dispatch(setCurFont(newFontFamily, font.fontSize));
   };
 
-  // const handleFontSizeChange = (e) => {
-  //   const newFontSize = Number(e.target.value);
-  //   setTexts((prevTexts) =>
-  //     prevTexts.map((text, index) => {
-  //       if (index === editingIndex) {
-  //         return { ...text, fontSize: newFontSize };
-  //       }
-  //       return text;
-  //     })
-  //   );
-  //   setFontSize(newFontSize);
-  // };
+  const handleFontSizeChange = (e) => {
+    const newFontSize = Number(e.target.value);
+    dispatch(setCurFont(font.fontName, newFontSize));
+    setFontSize(newFontSize);
+  };
 
   return (
     <div>
-      글꼴: &nbsp;
-      <select value={fontFamily} onChange={handleFontChange}>
-        {fontOptions.map((option) => (
-          <option key={option.value} value={option.value}>
-            {option.label}
-          </option>
-        ))}
-      </select>
+      <div>
+        글꼴: &nbsp;
+        <select value={font.fontName} onChange={handleFontChange}>
+          {fontOptions.map((option) => (
+            <option key={option.value} value={option.value}>
+              {option.label}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div>
+        <label>
+          크기: &nbsp;
+          <input
+            type="number"
+            value={font.fontSize}
+            onChange={handleFontSizeChange}
+            style={{ width: 50, height: 15 }}
+          />
+        </label>
+      </div>
     </div>
   );
 };

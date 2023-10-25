@@ -7,7 +7,7 @@ import { TextModify } from "../../tabs/textModify/index";
 import { TextBox } from "../../textBox/index";
 
 export const Sidebar = (props) => {
-  const tabId = useSelector((state) => state.tabId);
+  const tabId = useSelector((state) => state.tab.tabId);
 
   return (
     <div className="sidebar">
@@ -15,9 +15,15 @@ export const Sidebar = (props) => {
       <TextBox selectedText={props.selectedText} />
       <div className="content">
         <TabList />
-        <div>{tabId === "colorModify" ?
-          <ColorModify selectedText={props.selectedText} /> :
-          <TextModify selectedText={props.selectedText} getFontFamily={props.getFontFamily} />}
+        <div>
+          {tabId === "colorModify" ? (
+            <ColorModify selectedText={props.selectedText} />
+          ) : (
+            <TextModify
+              selectedText={props.selectedText}
+              imageInfo={props.imageInfo}
+            />
+          )}
         </div>
       </div>
     </div>
