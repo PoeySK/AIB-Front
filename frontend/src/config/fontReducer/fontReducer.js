@@ -1,20 +1,57 @@
-export const CUR_FONT = 'CUR_FONT';
-export const setCurFont = (fontName, fontSize) => ({ type: CUR_FONT, fontName, fontSize });
+export const SET_FONT_DATA = 'SET_FONT_DATA';
+
+export const setFontData = (index, fontSizes, fontColors) => ({
+    type: SET_FONT_DATA,
+    payload: {
+        index,
+        fontSizes,
+        fontColors,
+    }
+});
+
 
 const initialState = {
-    fontName: "Arial",
-    fontSize: 24
+    textElement: [{
+        fontSizes: [24, 18], // array(int)
+        fontColors: "#000000", // string
+    }]
 };
 
 export const FontReducer = (state = initialState, action) => {
     switch (action.type) {
-        case CUR_FONT:
+        case SET_FONT_DATA:
+            const {index, fontSizes, fontColors} = action.payload;
+            const setFontData = [...state.textElement];
+            setFontData[index] = {...setFontData[index], fontSizes, fontColors};
             return {
                 ...state,
-                fontName: action.fontName,
-                fontSize: action.fontSize
+                textElement: setFontData,
             };
         default:
             return state;
     }
 };
+
+/*
+Create Background
+response_data = {
+            'image': image_base64, -> base64 decoding
+            'text_color' : text_color -> string(#000000)
+            'changed_texts': changed_texts, -> array(string)
+            'position': position, -> array({int, int})
+            'font_size': font_size, -> array(int)
+            'kerning': kerning, -> array(float)
+            'alignments': alignments, -> string
+        }
+
+Non Create Background
+response_data = {
+            'background_color': background_color_arr,
+            'text_color': text_color_arr,
+            'changed_texts': changed_texts,
+            'position': position,
+            'font_size': font_size,
+            'kerning': kerning,
+            'alignments': alignments,
+        }
+*/

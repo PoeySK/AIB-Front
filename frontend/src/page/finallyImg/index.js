@@ -1,9 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
 import { ImgWithText } from "../../components/imgWithText";
 import { Layout } from "../../components/layouts";
+import { fetchData, getData } from "../../data/imgData";
+import { ImageAndText } from "../../components/ImageAndText";
 
 const LastPage = () => {
+  // useEffect(() => { // data 비동기 로드
+  //   fetchData();
+  // }, []);
+
+  // const imgData = getData();
+  const realTestImage = {
+    imageBase64: "./realTestImg.jpeg",
+    texts: ["무더운 여름", "떠나자 해변으로"],
+    positions: [{ x: 510, y: 200 }, { x: 510, y: 300 }],
+    fontSize: [30, 55],
+    kerning: [0.1, 0.2],
+    alignment: "left",
+    textColor: "#000000"
+  }
+
+  /* ---------------------Test Data------------------- */
   const imgTest = "./testImgJpeg.jpeg";
   const image = {
     imageUrl_front: imgTest,
@@ -30,6 +48,7 @@ const LastPage = () => {
       { x: 1, y: 1 },
     ],
   };
+  /* ------------------------------------------------ */
 
   const imageSize = { width: "100%", height: "100%" };
   const [selectedText, setSelectedText] = useState("");
@@ -50,12 +69,16 @@ const LastPage = () => {
             width: imageSize.width,
           }}
         >
-          <ImgWithText
+          <ImageAndText
+            realTestImage={realTestImage}
+            onClick={handleSelectedText}
+          />
+          {/* <ImgWithText
             imageUrl={image.imageUrl_front}
             initialTexts={image.initialTexts}
             initialTextPositions={image.textPositions}
             onClickText={handleSelectedText}
-          />
+          /> */}
         </div>
       </Layout>
     </>

@@ -4,7 +4,6 @@ body {
 
 .image-container {
   display: flex;
-  justify-content: center;
   padding-top: 200px;
-  padding-left: 300px;
+  padding-left: 400px;
 }

@@ -1,7 +1,7 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./index.css";
-import { useDispatch } from "react-redux";
-import { setCurFont } from "../../config/fontReducer/fontReducer";
+import { useSelector, useDispatch } from "react-redux";
+import { setFontData } from "../../config/fontReducer/fontReducer";
 
 export const ImgWithText = ({
   imageUrl,
@@ -9,50 +9,30 @@ export const ImgWithText = ({
   initialTextPositions,
   onClickText,
 }) => {
-  const containerRef = useRef(null);
-  const systemRef = useRef(null);
   const texts = initialTexts;
-  const [editingIndex, setEditingIndex] = useState(null);
-  const [editing, setEditing] = useState(false);
+  const [textIndex, setTextIndex] = useState(null);
   const [dragging, setDragging] = useState(false);
   const [startPos, setStartPos] = useState({ x: 0, y: 0 });
   const [textPositions, setTextPositions] = useState(initialTextPositions);
+
+  const font = useSelector(state => state.font);
   const dispatch = useDispatch();
   
+  
   const handleTextClick = (index) => {
-    dispatch(setCurFont(texts[index]?.fontFamily, texts[index]?.fontSize));
+    dispatch(setFontData(texts[index]?.fontFamily, texts[index]?.fontSize));
     onClickText(texts[index]?.text);
   };
-
-  const handleClickOutside = (e) => {
-    if (
-      containerRef.current &&
-      !containerRef.current.contains(e.target) &&
-      systemRef.current &&
-      !systemRef.current.contains(e.target)
-    ) {
-      setEditing(false);
-    }
-  };
-
   const textStyles = textPositions.map((position, index) => ({
     top: `${position.y + 50}px`,
     left: `${position.x + 80}px`,
-    fontSize: texts[index]?.fontSize ? `${texts[index].fontSize}px` : "24px",
-    fontFamily: texts[index]?.fontFamily ? texts[index].fontFamily : "Arial",
+    fontSize: texts[index]?.fontSize,
+    fontFamily: texts[index]?.fontFamily,
   }));
 
-  useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, []);
-
   const handleMouseDown = (e, index) => {
-    if (editing) return;
     setDragging(true);
-    setEditingIndex(index);
+    setTextIndex(index);
     setStartPos({
       x: e.clientX - textPositions[index].x,
       y: e.clientY - textPositions[index].y,
@@ -60,14 +40,14 @@ export const ImgWithText = ({
   };
 
   const handleMouseMove = (e) => {
-    if (!dragging || editingIndex === null) return;
+    if (!dragging || textIndex === null) return;
     const newPosition = {
       x: e.clientX - startPos.x,
       y: e.clientY - startPos.y,
     };
     setTextPositions((prevPositions) =>
       prevPositions.map((pos, index) =>
-        index === editingIndex ? newPosition : pos
+        index === textIndex ? newPosition : pos
       )
     );
   };
@@ -90,10 +70,9 @@ export const ImgWithText = ({
       <div
         style={{
           position: "relative",
-          display: "inline-block",
         }}
         className="image-with-text"
-        ref={containerRef}
+        
       >
         <div>
           <img
