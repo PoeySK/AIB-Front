@@ -1,20 +1,19 @@
 import React, { useState, useEffect } from "react";
 import "./index.css";
 import { useSelector, useDispatch } from "react-redux";
-import { setFontData } from "../../config/fontReducer/fontReducer";
 import { setTIndex } from "../../config/textIndexReducer/textIndexReducer";
 
 export const ImageAndText = (props) => {
     const { realTestImage } = props;
 
+    const font = useSelector(state => state.font.textElement);
+
     const [textIndex, setTextIndex] = useState(null);
     const [dragging, setDragging] = useState(false);
     const [startPos, setStartPos] = useState({ x: 0, y: 0 });
     const [textPositions, setTextPositions] = useState(realTestImage.positions);
-
+    
     const dispatch = useDispatch();
-    const font = useSelector(state => state.textElements);
-    const tIndex = useSelector(state => state.tIndex);
 
     const handleTextClick = (index) => {
         props.onClick(realTestImage.texts[index]);
@@ -84,9 +83,9 @@ export const ImageAndText = (props) => {
                             position: "absolute",
                             left: `${textPositions[index].x + 50}px`,
                             top: `${textPositions[index].y + 80}px`,
-                            fontSize: realTestImage.fontSize[index] + "px",
+                            fontSize: font.fontSizes[index] + "px",
                             letterSpacing: realTestImage.kerning[index] + "px",
-                            color: realTestImage.textColor,
+                            color: font.fontColor,
                             textAlign: realTestImage.alignment,
                         }}
                         onClick={() => handleTextClick(index)}

@@ -8,7 +8,7 @@ export const setTIndex = (textIndex) => ({
 
 
 const initialState = {
-    textIndex: 10
+    textIndex: 0
 };
 
 export const TextIndexReducer = (state = initialState, action) => {

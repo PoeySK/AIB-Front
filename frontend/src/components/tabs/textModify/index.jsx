@@ -7,9 +7,7 @@ export const TextModify = (props) => {
   const tIndex =useSelector(state => state.tIndex.textIndex);
   const dispatch = useDispatch();
 
-  console.log("tm:",font.fontSizes);
-  console.log("tmtt:",tIndex);
-  console.log("fs:", font.fontSizes[tIndex]);
+  const fontSizes = [...font.fontSizes];
 
   const handleFontColorChange = (e) => {
     dispatch();
@@ -17,7 +15,8 @@ export const TextModify = (props) => {
 
   const handleFontSizeChange = (e) => {
     const newFontSize = Number(e.target.value);
-    dispatch();
+    fontSizes[tIndex] = newFontSize;
+    dispatch(setFontData(tIndex, newFontSize, font.fontColor));
   };
 
   return (
@@ -27,7 +26,7 @@ export const TextModify = (props) => {
           크기: &nbsp;
           <input
             type="number"
-            value={font.fontSizes[tIndex]}
+            value={fontSizes[tIndex]}
             onChange={handleFontSizeChange}
             style={{ width: 50, height: 15 }}
           />
