@@ -19,10 +19,7 @@ export const Sidebar = (props) => {
           {tabId === "colorModify" ? (
             <ColorModify selectedText={props.selectedText} />
           ) : (
-            <TextModify
-              selectedText={props.selectedText}
-              imageInfo={props.imageInfo}
-            />
+            <TextModify />
           )}
         </div>
       </div>

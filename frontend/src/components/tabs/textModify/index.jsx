@@ -3,9 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { setFontData } from "../../../config/fontReducer/fontReducer";
 
 export const TextModify = (props) => {
-  const font = useSelector(state => state.textElement);
+  const font = useSelector(state => state.font.textElement);
+  const tIndex =useSelector(state => state.tIndex.textIndex);
   const dispatch = useDispatch();
-  console.log(font);
+
+  console.log("tm:",font.fontSizes);
+  console.log("tmtt:",tIndex);
+  console.log("fs:", font.fontSizes[tIndex]);
+
   const handleFontColorChange = (e) => {
     dispatch();
   };
@@ -22,7 +27,7 @@ export const TextModify = (props) => {
           크기: &nbsp;
           <input
             type="number"
-            value={0}
+            value={font.fontSizes[tIndex]}
             onChange={handleFontSizeChange}
             style={{ width: 50, height: 15 }}
           />

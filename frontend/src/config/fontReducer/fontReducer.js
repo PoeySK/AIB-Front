@@ -11,10 +11,10 @@ export const setFontData = (index, fontSizes, fontColors) => ({
 
 
 const initialState = {
-    textElement: [{
-        fontSizes: [24, 18], // array(int)
+    textElement: {
+        fontSizes: [30, 55], // array(int)
         fontColors: "#000000", // string
-    }]
+    }
 };
 
 export const FontReducer = (state = initialState, action) => {

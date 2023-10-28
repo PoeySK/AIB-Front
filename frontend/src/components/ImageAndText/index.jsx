@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./index.css";
 import { useSelector, useDispatch } from "react-redux";
 import { setFontData } from "../../config/fontReducer/fontReducer";
+import { setTIndex } from "../../config/textIndexReducer/textIndexReducer";
 
 export const ImageAndText = (props) => {
     const { realTestImage } = props;
@@ -13,9 +14,11 @@ export const ImageAndText = (props) => {
 
     const dispatch = useDispatch();
     const font = useSelector(state => state.textElements);
+    const tIndex = useSelector(state => state.tIndex);
 
     const handleTextClick = (index) => {
         props.onClick(realTestImage.texts[index]);
+        dispatch(setTIndex(index));
     };
 
     const handleMouseDown = (e, index) => {

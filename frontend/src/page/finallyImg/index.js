@@ -61,7 +61,6 @@ const LastPage = () => {
     <>
       <Layout
         selectedText={selectedText}
-        imageInfo={image}
       >
         <div
           className="image-container"
