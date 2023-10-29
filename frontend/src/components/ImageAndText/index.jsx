@@ -7,16 +7,18 @@ export const ImageAndText = (props) => {
     const { realTestImage } = props;
 
     const font = useSelector(state => state.font.textElement);
+    const dispatch = useDispatch();
 
     const [textIndex, setTextIndex] = useState(null);
     const [dragging, setDragging] = useState(false);
     const [startPos, setStartPos] = useState({ x: 0, y: 0 });
     const [textPositions, setTextPositions] = useState(realTestImage.positions);
-    
-    const dispatch = useDispatch();
+    const [displayTab, setDisplayTab] = useState(false);
+
 
     const handleTextClick = (index) => {
         props.onClick(realTestImage.texts[index]);
+        setDisplayTab(true);
         dispatch(setTIndex(index));
     };
 
@@ -97,7 +99,7 @@ export const ImageAndText = (props) => {
             </div>
             <div
                 style={{
-                    position: "fixed",
+                    position: "absolute",
                     display: "flex"
                 }}
             >

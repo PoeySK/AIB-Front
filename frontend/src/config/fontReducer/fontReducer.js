@@ -23,6 +23,7 @@ export const FontReducer = (state = initialState, action) => {
             const { index, fontSizes, fontColor } = action.payload;
             const newTextElement = { ...state.textElement };
             newTextElement.fontSizes[index] = fontSizes;
+            newTextElement.fontColor = fontColor;
             return {
                 ...state,
                 textElement: newTextElement,

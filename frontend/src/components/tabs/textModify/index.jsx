@@ -1,17 +1,14 @@
-import React, { useState } from "react";
+import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setFontData } from "../../../config/fontReducer/fontReducer";
+import { SelectColorBox } from "../../selectColorBox";
 
-export const TextModify = (props) => {
+export const TextModify = () => {
   const font = useSelector(state => state.font.textElement);
-  const tIndex =useSelector(state => state.tIndex.textIndex);
+  const tIndex = useSelector(state => state.tIndex.textIndex);
   const dispatch = useDispatch();
 
   const fontSizes = [...font.fontSizes];
-
-  const handleFontColorChange = (e) => {
-    dispatch();
-  };
 
   const handleFontSizeChange = (e) => {
     const newFontSize = Number(e.target.value);
@@ -21,19 +18,20 @@ export const TextModify = (props) => {
 
   return (
     <div>
-      <div>
+      <div style={{ margin: "10px 0px" }}>
         <label>
           크기: &nbsp;
-          <input
-            type="number"
-            value={fontSizes[tIndex]}
-            onChange={handleFontSizeChange}
-            style={{ width: 50, height: 15 }}
-          />
         </label>
+        <input
+          type="number"
+          value={fontSizes[tIndex]}
+          onChange={handleFontSizeChange}
+          style={{ width: 50, height: 15 }}
+        />
       </div>
       <div>
-        색깔: &nbsp;
+        색깔
+        <SelectColorBox tIndex={tIndex}/>
       </div>
     </div>
   );
