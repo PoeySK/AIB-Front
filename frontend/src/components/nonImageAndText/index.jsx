@@ -3,19 +3,20 @@ import "./index.css";
 import { useSelector, useDispatch } from "react-redux";
 import { setTIndex } from "../../config/textIndexReducer/textIndexReducer";
 
-export const ImageAndText = (props) => {
-    const { realTestImage } = props;
+export const NonImageAndText = (props) => {
+    const { realTestNBImage } = props;
 
     const font = useSelector(state => state.font.textElement);
+    const bgColor = useSelector(state => state.bgColor.bgColor.bgColor);
     const dispatch = useDispatch();
 
     const [textIndex, setTextIndex] = useState(null);
     const [dragging, setDragging] = useState(false);
     const [startPos, setStartPos] = useState({ x: 0, y: 0 });
-    const [textPositions, setTextPositions] = useState(realTestImage.positions);
+    const [textPositions, setTextPositions] = useState(realTestNBImage.positions);
 
     const handleTextClick = (index) => {
-        props.handleSelectedText(realTestImage.texts[index]);
+        props.handleSelectedText(realTestNBImage.texts[index]);
         props.handleDisplayTabShow();
         dispatch(setTIndex(index));
     };
@@ -58,7 +59,7 @@ export const ImageAndText = (props) => {
     const handleResetButtonClick = () => {
         setTextIndex(null);
         setDragging(false);
-        setTextPositions(realTestImage.positions);
+        setTextPositions(realTestNBImage.positions);
     }
 
     return (
@@ -70,30 +71,43 @@ export const ImageAndText = (props) => {
                     display: "inline-block"
                 }}
             >
-                <img
-                    id="select-img"
-                    src={realTestImage.imageBase64}
-                    alt="AIB Service..."
-                />
-                {realTestImage.texts.map((text, index) => (
-                    <div
-                        className="text-wrapper"
-                        key={index}
+                <div
+                    style={{
+                        padding: "50px 80px",
+                        width: "1024px",
+                        height: "512px",
+                        backgroundClip: "content-box",
+                        backgroundColor: bgColor,
+                    }}
+                >
+                    <img
+                        src={realTestNBImage.product}
                         style={{
-                            position: "absolute",
-                            left: `${textPositions[index].x + 50}px`,
-                            top: `${textPositions[index].y + 80}px`,
-                            fontSize: font.fontSizes[index] + "px",
-                            letterSpacing: realTestImage.kerning[index] + "px",
-                            color: font.fontColor,
-                            textAlign: realTestImage.alignment,
+                            display: "inline-flex",
+                            width: "50%",
                         }}
-                        onClick={() => handleTextClick(index)}
-                        onMouseDown={(e) => handleMouseDown(e, index)}
-                    >
-                        {text}
-                    </div>
-                ))}
+                    />
+                    {realTestNBImage.texts.map((text, index) => (
+                        <div
+                            className="text-wrapper"
+                            key={index}
+                            style={{
+                                display: "inline-block",
+                                position: "absolute",
+                                left: `${textPositions[index].x + 50}px`,
+                                top: `${textPositions[index].y + 80}px`,
+                                fontSize: font.fontSizes[index] + "px",
+                                letterSpacing: realTestNBImage.kerning[index] + "px",
+                                color: font.fontColor,
+                                textAlign: realTestNBImage.alignment,
+                            }}
+                            onClick={() => handleTextClick(index)}
+                            onMouseDown={(e) => handleMouseDown(e, index)}
+                        >
+                            {text}
+                        </div>
+                    ))}
+                </div>
             </div>
             <div
                 style={{
