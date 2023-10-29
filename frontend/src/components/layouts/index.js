@@ -3,7 +3,7 @@ import { TopMenu } from "./topMenu/index";
 import { Sidebar } from "./sideMenu/index";
 
 export const Layout = (props) => {
-  const { selectedText } = props;
+  const { selectedText, displayTab, imgCheck } = props;
   
   return (
     <>
@@ -11,7 +11,8 @@ export const Layout = (props) => {
       <main>{props.children}</main>
       <Sidebar
         selectedText={selectedText}
-        imageInfo={props.imageInfo}
+        displayTab={displayTab}
+        imgCheck={imgCheck}
       />
     </>
   );

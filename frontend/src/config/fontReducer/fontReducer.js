@@ -1,18 +1,31 @@
-export const CUR_FONT = 'CUR_FONT';
-export const setCurFont = (fontName, fontSize) => ({ type: CUR_FONT, fontName, fontSize });
+export const SET_FONT_DATA = 'SET_FONT_DATA';
+
+export const setFontData = (index, fontSizes, fontColor) => ({
+    type: SET_FONT_DATA,
+    payload: {
+        index,
+        fontSizes,
+        fontColor,
+    }
+});
 
 const initialState = {
-    fontName: "Arial",
-    fontSize: 24
+    textElement: {
+        fontSizes: [30, 55], // array(int)
+        fontColor: "#000000", // string
+    },
 };
 
 export const FontReducer = (state = initialState, action) => {
     switch (action.type) {
-        case CUR_FONT:
+        case SET_FONT_DATA:
+            const { index, fontSizes, fontColor } = action.payload;
+            const newTextElement = { ...state.textElement };
+            newTextElement.fontSizes[index] = fontSizes;
+            newTextElement.fontColor = fontColor;
             return {
                 ...state,
-                fontName: action.fontName,
-                fontSize: action.fontSize
+                textElement: newTextElement,
             };
         default:
             return state;

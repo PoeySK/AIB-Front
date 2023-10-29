@@ -1,61 +1,68 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./index.css";
-import { ImgWithText } from "../../components/imgWithText";
 import { Layout } from "../../components/layouts";
+import { fetchData, getData } from "../../data/imgData";
+import { ImageAndText } from "../../components/ImageAndText";
+import { NonImageAndText } from "../../components/nonImageAndText";
 
 const LastPage = () => {
-  const imgTest = "./testImgJpeg.jpeg";
-  const image = {
-    imageUrl_front: imgTest,
-    initialTexts: [
-      {
-        text: "AIB는\n 아이브라고 읽어!!@#1234",
-        fontSize: 24,
-        fontFamily: "Arial",
-      },
-      {
-        text: "AIB Project\n 末!!!",
-        fontSize: 18,
-        fontFamily: "Courier New",
-      },
-      {
-        text: "언제 이 프로젝트가\n끝날까...?",
-        fontSize: 20,
-        fontFamily: "Helvetica",
-      },
-    ],
-    textPositions: [
-      { x: 500, y: 200 },
-      { x: 1000, y: 300 },
-      { x: 1, y: 1 },
-    ],
-  };
+  // useEffect(() => { // data 비동기 로드
+  //   fetchData();
+  // }, []);
 
-  const imageSize = { width: "100%", height: "100%" };
+  // const imgData = getData();
+  const realTestImage = {
+    imageBase64: "./realTestImg.jpeg",
+    texts: ["무더운 여름", "떠나자 해변으로"],
+    positions: [{ x: 510, y: 200 }, { x: 510, y: 300 }],
+    fontSize: [30, 55],
+    kerning: [0.1, 0.2],
+    alignment: "left",
+    textColor: "#000000"
+  }
+  const realTestNBImage = {
+    background_color: "#F9A9DE",
+    texts: ["무더운 여름", "떠나자 해변으로"],
+    positions: [{ x: 510, y: 200 }, { x: 510, y: 300 }],
+    fontSize: [30, 55],
+    kerning: [0.1, 0.2],
+    alignment: "left",
+    textColor: "#ffffff",
+    product: "./buzz.png"
+  }
+
   const [selectedText, setSelectedText] = useState("");
+  const [displayTab, setDisplayTab] = useState(false);
+  const imgCheck = realTestImage.imageBase64 ? true : false;
 
   const handleSelectedText = (newText) => {
     setSelectedText(newText);
   };
+  const handleDisplayTabShow = () => {
+    setDisplayTab(true);
+  }
 
   return (
     <>
       <Layout
         selectedText={selectedText}
-        imageInfo={image}
+        displayTab={displayTab}
+        imgCheck={imgCheck}
       >
         <div
           className="image-container"
-          style={{
-            width: imageSize.width,
-          }}
-        >
-          <ImgWithText
-            imageUrl={image.imageUrl_front}
-            initialTexts={image.initialTexts}
-            initialTextPositions={image.textPositions}
-            onClickText={handleSelectedText}
+        >{!imgCheck ?
+          <ImageAndText
+            realTestImage={realTestImage}
+            handleSelectedText={handleSelectedText}
+            handleDisplayTabShow={handleDisplayTabShow}
+          /> :
+          <NonImageAndText
+            realTestNBImage={realTestNBImage}
+            handleSelectedText={handleSelectedText}
+            handleDisplayTabShow={handleDisplayTabShow}
           />
+          }
         </div>
       </Layout>
     </>
