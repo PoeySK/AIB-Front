@@ -31,7 +31,7 @@ export const ColorModify = (props) => {
 
     return (
         <div>
-            {!imgCheck ?
+            {imgCheck ?
                 <div> 해당 배너에서는 지원하지 않는 기능입니다. </div>
                 :
                 <div className="circleList">
