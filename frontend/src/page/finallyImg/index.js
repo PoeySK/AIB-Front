@@ -22,7 +22,7 @@ const LastPage = () => {
   }
   const realTestNBImage = {
     background_color: "#F9A9DE",
-    texts: ["무더운 여름", "떠나자 해변으로"],
+    texts: ["고퀄리티", "삼다수 버즈 케이스"],
     positions: [{ x: 510, y: 200 }, { x: 510, y: 300 }],
     fontSize: [30, 55],
     kerning: [0.1, 0.2],
@@ -51,7 +51,7 @@ const LastPage = () => {
       >
         <div
           className="image-container"
-        >{!imgCheck ?
+        >{imgCheck ?
           <ImageAndText
             realTestImage={realTestImage}
             handleSelectedText={handleSelectedText}
