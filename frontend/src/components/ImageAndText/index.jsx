@@ -66,7 +66,7 @@ export const ImageAndText = (props) => {
             <div
                 className="image-and-text"
                 style={{
-                    position: "absolute",
+                    position: "relative",
                     display: "inline-block"
                 }}
             >

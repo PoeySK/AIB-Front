@@ -4,6 +4,7 @@ import { Layout } from "../../components/layouts";
 import { fetchData, getData } from "../../data/imgData";
 import { ImageAndText } from "../../components/ImageAndText";
 import { NonImageAndText } from "../../components/nonImageAndText";
+import { DownloadButton } from "../../components/downloadButton";
 
 const LastPage = () => {
   // useEffect(() => { // data 비동기 로드
@@ -49,20 +50,22 @@ const LastPage = () => {
         displayTab={displayTab}
         imgCheck={imgCheck}
       >
-        <div
-          className="image-container"
-        >{imgCheck ?
-          <ImageAndText
-            realTestImage={realTestImage}
-            handleSelectedText={handleSelectedText}
-            handleDisplayTabShow={handleDisplayTabShow}
-          /> :
-          <NonImageAndText
-            realTestNBImage={realTestNBImage}
-            handleSelectedText={handleSelectedText}
-            handleDisplayTabShow={handleDisplayTabShow}
-          />
+        <div className="image-container">
+          {imgCheck ?
+            <ImageAndText
+              realTestImage={realTestImage}
+              handleSelectedText={handleSelectedText}
+              handleDisplayTabShow={handleDisplayTabShow}
+            /> :
+            <NonImageAndText
+              realTestNBImage={realTestNBImage}
+              handleSelectedText={handleSelectedText}
+              handleDisplayTabShow={handleDisplayTabShow}
+            />
           }
+        </div>
+        <div className="download-button-container">
+          <DownloadButton />
         </div>
       </Layout>
     </>
