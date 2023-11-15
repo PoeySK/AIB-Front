@@ -84,7 +84,7 @@ export const ImageAndText = (props) => {
                             top: `${textPositions[index].y + 80}px`,
                             fontSize: font.fontSizes[index] + "px",
                             letterSpacing: realTestImage.kerning[index] + "px",
-                            color: font.fontColor[index],
+                            color: font.fontColors[index],
                             textAlign: realTestImage.alignment[index],
                         }}
                         onClick={() => handleTextClick(index)}

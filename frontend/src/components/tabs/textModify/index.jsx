@@ -13,7 +13,7 @@ export const TextModify = () => {
   const handleFontSizeChange = (e) => {
     const newFontSize = Number(e.target.value);
     fontSizes[tIndex] = newFontSize;
-    dispatch(setFontData(tIndex, newFontSize, font.fontColor));
+    dispatch(setFontData(tIndex, newFontSize, font.fontColors));
   };
 
   return (

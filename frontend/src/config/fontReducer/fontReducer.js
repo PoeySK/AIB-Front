@@ -2,29 +2,29 @@ import { font_size, text_color, select_image_index } from '../../data/testData';
 
 export const SET_FONT_DATA = 'SET_FONT_DATA';
 
-export const setFontData = (index, fontSizes, fontColor) => ({
+export const setFontData = (index, fontSizes, fontColors) => ({
     type: SET_FONT_DATA,
     payload: {
         index,
         fontSizes,
-        fontColor,
+        fontColors,
     }
 });
 
 const initialState = {
     textElement: {
-        fontSizes: font_size[select_image_index], // array(int)
-        fontColor: text_color[select_image_index], // string
+        fontSizes: font_size[select_image_index],
+        fontColors: text_color[select_image_index],
     },
 };
 
 export const FontReducer = (state = initialState, action) => {
     switch (action.type) {
         case SET_FONT_DATA:
-            const { index, fontSizes, fontColor } = action.payload;
+            const { index, fontSizes, fontColors } = action.payload;
             const newTextElement = { ...state.textElement };
             newTextElement.fontSizes[index] = fontSizes;
-            newTextElement.fontColor = fontColor;
+            newTextElement.fontColors[index] = fontColors;
             return {
                 ...state,
                 textElement: newTextElement,
