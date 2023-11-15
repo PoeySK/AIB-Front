@@ -1,3 +1,5 @@
+import { font_size, text_color, select_image_index } from '../../data/testData';
+
 export const SET_FONT_DATA = 'SET_FONT_DATA';
 
 export const setFontData = (index, fontSizes, fontColor) => ({
@@ -11,8 +13,8 @@ export const setFontData = (index, fontSizes, fontColor) => ({
 
 const initialState = {
     textElement: {
-        fontSizes: [30, 55], // array(int)
-        fontColor: "#000000", // string
+        fontSizes: font_size[select_image_index], // array(int)
+        fontColor: text_color[select_image_index], // string
     },
 };
 

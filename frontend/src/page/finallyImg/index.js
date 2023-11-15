@@ -6,6 +6,17 @@ import { ImageAndText } from "../../components/ImageAndText";
 import { NonImageAndText } from "../../components/nonImageAndText";
 import { DownloadButton } from "../../components/downloadButton";
 
+import {
+  image,
+  changed_texts,
+  position,
+  font_size,
+  kerning,
+  alignments,
+  text_color,
+  select_image_index,
+} from '../../data/testData';
+
 const LastPage = () => {
   // useEffect(() => { // data 비동기 로드
   //   fetchData();
@@ -13,13 +24,13 @@ const LastPage = () => {
 
   // const imgData = getData();
   const realTestImage = {
-    imageBase64: "./realTestImg.jpeg",
-    texts: ["무더운 여름", "떠나자 해변으로"],
-    positions: [{ x: 510, y: 200 }, { x: 510, y: 300 }],
-    fontSize: [30, 55],
-    kerning: [0.1, 0.2],
-    alignment: "left",
-    textColor: "#000000"
+    imageBase64: image[select_image_index],
+    texts: changed_texts[select_image_index],
+    positions: position[select_image_index],
+    fontSize: font_size[select_image_index],
+    kerning: kerning[select_image_index],
+    alignment: alignments[select_image_index],
+    textColor: text_color[select_image_index]
   }
   const realTestNBImage = {
     background_color: "#F9A9DE",
@@ -34,8 +45,8 @@ const LastPage = () => {
 
   const [selectedText, setSelectedText] = useState("");
   const [displayTab, setDisplayTab] = useState(false);
-  const imgCheck = realTestImage.imageBase64 ? true : false;
-
+  // const imgCheck = realTestImage.imageBase64 ? true : false;
+  const imgCheck = true;
   const handleSelectedText = (newText) => {
     setSelectedText(newText);
   };
@@ -64,6 +75,7 @@ const LastPage = () => {
             />
           }
         </div>
+        1
         <div className="download-button-container">
           <DownloadButton />
         </div>
