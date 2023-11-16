@@ -29,8 +29,10 @@ const App = () => {
 
 export default App;
 ----------------------------------------------------- */
-
-export const image = ["ham0.png", "ham1.png", "ham2.png"]  // 1차원 배열
+import Ham0 from "../image/ham0.png";
+import Ham1 from "../image/ham1.png";
+import Ham2 from "../image/ham2.png";
+export const image = [Ham0, Ham1, Ham2]  // 1차원 배열
 export const changed_texts = [
   ["AIB 프로젝트의", "데모버젼 실험 데이터", "성공 기원"],
   ["AIB Project의", "Demo version 실험 데이터", "success 기원"],
