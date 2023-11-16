@@ -73,7 +73,6 @@ export const ImageAndText = (props) => {
                 <img
                     id="select-img"
                     src={realTestImage.imageBase64}
-                    alt="AIB Service..."
                 />
                 {realTestImage.texts.map((text, index) => (
                     <div
@@ -85,8 +84,8 @@ export const ImageAndText = (props) => {
                             top: `${textPositions[index].y + 80}px`,
                             fontSize: font.fontSizes[index] + "px",
                             letterSpacing: realTestImage.kerning[index] + "px",
-                            color: font.fontColor,
-                            textAlign: realTestImage.alignment,
+                            color: font.fontColors[index],
+                            textAlign: realTestImage.alignment[index],
                         }}
                         onClick={() => handleTextClick(index)}
                         onMouseDown={(e) => handleMouseDown(e, index)}

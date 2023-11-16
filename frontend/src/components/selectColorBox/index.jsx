@@ -30,10 +30,11 @@ const styles = reactCSS({
 
 export const SelectColorBox = (props) => {
     const font = useSelector(state => state.font.textElement);
+    const tIndex = useSelector(state => state.tIndex.textIndex);
     const dispatch = useDispatch();
 
     const [displayColorPicker, setDisplayColorPicker] = useState(false);
-    let curFontColor = font.fontColor;
+    let curFontColor = font.fontColors[tIndex];
 
     const handlePickerClick = () => {
         setDisplayColorPicker(!displayColorPicker);
