@@ -1,3 +1,35 @@
+/* ------------------Decoding 과정----------------------- 
+import React from "react";
+
+const ImageComponent = ({ images }) => {
+  return (
+    <div>
+      {images.map((encodedImage, index) => (
+        <img
+          key={index}
+          src={`data:image/jpeg;base64,${encodedImage}`}
+          alt={`Image ${index + 1}`}
+          style={{ width: "200px", height: "200px", margin: "10px" }}
+        />
+      ))}
+    </div>
+  );
+};
+
+const App = () => {
+  const images = ["encodeImage1", "encodeImage2", "encodeImage3"];
+
+  return (
+    <div>
+      <h1>Decoded Images</h1>
+      <ImageComponent images={images} />
+    </div>
+  );
+};
+
+export default App;
+----------------------------------------------------- */
+
 export const image = ["ham0.png", "ham1.png", "ham2.png"]  // 1차원 배열
 export const changed_texts = [
   ["AIB 프로젝트의", "데모버젼 실험 데이터", "성공 기원"],
